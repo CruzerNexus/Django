@@ -1,0 +1,20 @@
+{% if latest_grocery_list %}
+	<form action='{% url "grocerylist:add_item" %}' method="post">
+		{% csrf_token %}
+		<input type="text" name="add_item">
+		<input type="submit" value="Add">
+	</form>
+    <ul>
+    {% for item in latest_grocery_list %}
+    	<form action="{% url 'grocerylist:delete_item' item.id %}" method="post">
+    		{% csrf_token %}
+	        <li>
+	        	{{ item.text_description }}
+	        	<input type="submit" value="Delete">
+	        </li>
+    	</form>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Your list is empty.</p>
+{% endif %}
