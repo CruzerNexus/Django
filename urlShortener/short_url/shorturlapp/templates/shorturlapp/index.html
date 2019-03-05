@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Short Urls by Cruzertech</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'shorturlapp/styles.css' %}"/>
+  </head>
+  <body>
+    <h1><strong>Please input a url to shorten:</strong></h1>
+  	<div class="container">
+      <div class="five columns">
+        <div class="offset-by-nine columns">
+          <form action="{% url 'shorturlapp:submit_url' %}" method="post">
+        		{% csrf_token %}
+        		{{ form }}
+        		<input type="submit" value="Shorten">
+            <p>Your shortened URL is: {{ myUrl.code }}. <br> Copy/paste it to the end of the url above ^ </p>
+        	</form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
