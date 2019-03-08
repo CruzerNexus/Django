@@ -1,0 +1,17 @@
+{% extends 'criRapp/base.html' %}
+
+{% block content %}
+    {% for post in object_list %}
+        <div class="post-entry">
+            <h2><a href="{% url 'user_cri_list' post.author.username %}">{{ post.author }}</a></h2>
+            <p><a href="{% url 'cri_detail' post.id %}">{{ post.body }}</a></p>
+            <p>Posted at: {{ post.created }}</p>
+            {% if post.created_updated_differ %}
+                <p>Updated at: {{ post.updated }}</p>
+            {% endif %}
+            {% if post.photo  %}
+                <p><img src="{{ post.photo.url }}"></p>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'criRapp/base.html' %}
+
+{% block content %}
+    <div class="post-entry">
+        <h2>{{ cri.author }}</h2>
+        <p>{{ cri.body }}</p>
+        <p>Posted at: {{ cri.created }}</p>
+        {% if cri.created_updated_differ %}
+            <p>Updated at: {{ cri.updated }}</p>
+        {% endif %}
+        <p><img src="{{ post.photo.url }}"></p>
+    </div>
+
+    {% if cri.author == user %}
+        <button type="submit"><a href="{% url 'cri_edit' cri.pk %}">Edit Cri</a></button>
+        <button type="submit"><a href="{% url 'cri_delete' cri.pk %}">Delete Cri</a></button>
+    {% endif %}
+{% endblock content %}
